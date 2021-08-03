@@ -38,7 +38,6 @@ const Report: FC<ReportPropsType> = ({}) => {
         setMode={setMode}
         mode={mode}
       />
-      {year}
       <ReportChart dataset={dataset} year={year} mode={mode} />
     </div>
   );

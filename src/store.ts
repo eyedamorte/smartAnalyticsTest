@@ -1,7 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import reportReducer from "./features/report/ReportSlice";
 
-
 const RootReducer = combineReducers({
   report: reportReducer,
 });

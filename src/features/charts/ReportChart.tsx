@@ -7,7 +7,7 @@ import type { Options as ChartOptionsType } from "highcharts";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-import { getSeries } from '../../services/reportChartService'
+import { getSeries } from "../../services/reportChartService";
 
 interface ReportChartPropsType {
   year?: DataRow["year"];
@@ -63,7 +63,7 @@ const ReportChart: FC<ReportChartPropsType> = ({ year, mode, dataset }) => {
       verticalAlign: "top",
       x: 100,
       y: 70,
-      floating: true,
+      floating: false,
       backgroundColor: "white",
       borderWidth: 1,
     },
@@ -71,22 +71,17 @@ const ReportChart: FC<ReportChartPropsType> = ({ year, mode, dataset }) => {
   });
 
   useEffect(() => {
-    setChartOptions({
-      title: {
-        text: `Scatter of Products in '${mode}' mode`,
-      },
-      subtitle: {
-        text: `Source: ${year} year`,
-      },
-    });
-  }, [year, mode]);
-
-
-
-  useEffect(() => {
     if (year && dataset && dataset) {
+      console.log(getSeries(dataset, mode, year));
+
       setChartOptions({
-        series: getSeries(dataset,mode, year),
+        title: {
+          text: `Scatter of Products in '${mode}' mode`,
+        },
+        subtitle: {
+          text: `Source: ${year} year`,
+        },
+        series: getSeries(dataset, mode, year),
       });
     }
   }, [year, mode, dataset]);

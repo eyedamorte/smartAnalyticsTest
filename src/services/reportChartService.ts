@@ -1,5 +1,6 @@
 import type { ReportStateType, modeType } from "../features/report/reportTypes";
 import type { DataRow } from "../data";
+import type { Options as ChartOptionsType, SeriesOptionsType } from "highcharts";
 
 export const getLastYear = (dataset: ReportStateType["dataset"]) => {
   if (dataset)
@@ -17,25 +18,26 @@ export const getYearsList = (dataset: ReportStateType["dataset"]) => {
   ];
 };
 
-export const getSeries = (dataset: ReportStateType["dataset"], mode: modeType, year: DataRow["year"]) => {
+export const getSeries = (dataset: ReportStateType["dataset"], mode: modeType, year: DataRow["year"]): SeriesOptionsType[] => {
     const datasetByYear = dataset?.filter((product)=>{
        return product.year === year;
     })
     if(mode === 'goods'){
-        return datasetByYear
-        ?.filter((product) => {
+        return datasetByYear?.filter((product) => {
           return product.year === year;
         })
         .map((product) => {
           return {
             name: product.name,
+            type: 'scatter',
             data: [[product.feature1, product.feature2]],
           };
-        });
+        }) || [];
     }else{
         return [
             {
                 name: 'Feature 1 > 150',
+                type: 'scatter',
                 data: datasetByYear
                 ?.filter((product) => {
                   return product.feature1 > 150;
@@ -43,6 +45,7 @@ export const getSeries = (dataset: ReportStateType["dataset"], mode: modeType, y
             },
             {
                 name: 'Feature 1 < 100',
+                type: 'scatter',
                 data: datasetByYear
                 ?.filter((product) => {
                   return product.feature1 < 100;
@@ -50,6 +53,7 @@ export const getSeries = (dataset: ReportStateType["dataset"], mode: modeType, y
             },
             {
                 name: 'other',
+                type: 'scatter',
                 data: datasetByYear
                 ?.filter((product) => {
                   return product.feature1 !< 150 && product.feature1 !> 100;

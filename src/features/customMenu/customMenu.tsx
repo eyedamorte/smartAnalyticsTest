@@ -9,7 +9,6 @@ interface DefaultMenuPropsType {
 }
 
 const DefaultMenu: FC<DefaultMenuPropsType> = ({ selectred, setSelected }) => {
-    
   return (
     <div>
       <Menu
