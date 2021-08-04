@@ -61,13 +61,41 @@ const ReportChart: FC<ReportChartPropsType> = ({ year, mode, dataset }) => {
       layout: "vertical",
       align: "left",
       verticalAlign: "top",
-      x: 100,
-      y: 70,
       floating: false,
       backgroundColor: "white",
       borderWidth: 1,
     },
     series: [],
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  align: 'center',
+                  verticalAlign: 'bottom',
+                  layout: 'horizontal'
+              },
+              yAxis: {
+                  labels: {
+                      align: 'left',
+                      x: 0,
+                      y: -5
+                  },
+                  title: {
+                      text: null
+                  }
+              },
+              subtitle: {
+                  text: undefined
+              },
+              credits: {
+                  enabled: false
+              }
+          }
+      }]
+  }
   });
 
   useEffect(() => {
