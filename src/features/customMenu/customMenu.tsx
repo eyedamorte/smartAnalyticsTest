@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Menu } from "antd";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface DefaultMenuPropsType {
   selectred: string | null;
@@ -20,10 +20,10 @@ const DefaultMenu: FC<DefaultMenuPropsType> = ({ selectred, setSelected }) => {
         }}
       >
         <Menu.Item key={"home"}>
-          <Link to="/home">Home</Link>
+          <NavLink to="/home">Home</NavLink>
         </Menu.Item>
         <Menu.Item key={"report"}>
-          <Link to="/report">Report</Link>
+          <NavLink to="/report">Report</NavLink>
         </Menu.Item>
       </Menu>
     </div>
